@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car animation</title>
+  <style>
+    #car-image {
+      width: 400px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      animation: move-right 4s linear infinite paused; 
+    }
+
+    @keyframes move-right {
+      from {
+        left: 0;
+      }
+      to {
+        left: calc(100% - 100px); 
+      }
+    }
+    #start-button, #stop-button{
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <img id="car-image" src="img/car-image.png" alt="Car image">
+  
+  <button id="start-button">Start</button>
+  <button id="stop-button">Stop</button>
+
+  <script>
+    const carImage = document.getElementById("car-image");
+
+    const startButton = document.getElementById("start-button");
+    const stopButton = document.getElementById("stop-button");
+
+    function startAnimation() {
+      carImage.style.animationPlayState = "running"; 
+    }
+
+    function stopAnimation() {
+      carImage.style.animationPlayState = "paused"; 
+    }
+
+    startButton.addEventListener("click", startAnimation);
+    stopButton.addEventListener("click", stopAnimation);
+
+    stopAnimation();
+  </script>
+</body>
+</html>

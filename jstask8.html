@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table-Like Form</title>
+  <style>
+    form {
+      width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgb(237, 195, 195);
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: none;
+      padding: 5px;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    input,
+    textarea {
+      width: 96%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0069d9;
+    }
+
+    a {
+      color: #007bff;
+    }
+
+    form {
+      border-radius: 5px;
+    }
+
+    th,
+    td {
+      font-weight: 400;
+    }
+
+    input,
+    textarea {
+      font-family: sans-serif;
+    }
+
+    input[type="submit"] {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    a {
+      font-size: 14px;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .lang {
+      width: 10%;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Registration Form</h2>
+  <form id="registrationForm">
+    <table border="1px" align="center">
+      <tr>
+        <td>First Name:</td>
+        <td><input type="text" name="firstname" size="41" required></td>
+        <td id="firstnameValidation"></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input type="text" name="lastname" size="41" required></td>
+        <td id="lastnameValidation"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="email" name="email" size="41" required></td>
+        <td id="emailValidation"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" name="password" size="41" required></td>
+        <td id="passwordValidation"></td>
+      </tr>
+      <tr>
+        <td>Re-Password:</td>
+        <td><input type="password" name="repassword" size="41" required></td>
+        <td id="repasswordValidation"></td>
+      </tr>
+      <tr>
+        <td rowspan="2">Gender:</td>
+        <td>
+          <input type="radio" name="gender" value="Male" class="lang">Male
+          <input type="radio" name="gender" value="Female" class="lang">Female
+        </td>
+        <td id="genderValidation"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="number" name="age" size="41" min="0" required></td>
+        <td id="ageValidation"></td>
+      </tr>
+      <tr>
+        <td>Phone number:</td>
+        <td><input type="tel" name="pno" size="41" required></td>
+        <td id="pnoValidation"></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><textarea rows="4" cols="33" name="address" required></textarea></td>
+        <td id="addressValidation"></td>
+      </tr>
+      <tr>
+        <td>State:</td>
+        <td><input type="text" name="state" size="41" required></td>
+        <td id="stateValidation"></td>
+      </tr>
+      <tr>
+        <td>Country:</td>
+        <td>
+          <select name="country" id="country" required>
+            <option value="" disabled selected>Choose your country</option>
+            <option>India</option>
+            <option>USA</option>
+            <option>France</option>
+            <option>Germany</option>
+            <option>Italy</option>
+          </select>
+        </td>
+        <td id="countryValidation"></td>
+      </tr>
+      <tr>
+        <td>Languages Known:</td>
+        <td>
+          <input type="checkbox" name="languages[]" value="English" class="lang">English
+          <input type="checkbox" name="languages[]" value="Kannada" class="lang">Kannada
+          <input type="checkbox" name="languages[]" value="Hindi" class="lang">Hindi
+          <input type="checkbox" name="languages[]" value="Telugu" class="lang">Telugu
+        </td>
+        <td id="languagesValidation"></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="checkbox" class="lang" required>Hereby I declare all the given details are true
+        </td>
+        <td id="declarationValidation"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">Log in to <a href="www.ethnus.com">Ethnus</a> website</td>
+        <td></td>
+      </tr>
+      <table align="center">
+        <td colspan="2" align="center">
+          <input type="button" value="Register" onclick="validateForm()" style="background-color: #267fdd; color: #fff;">
+        </td>
+      </table>
+    </table>
+  </form>
+
+  <script>
+    function validateForm() {
+      // Validation logic for each form field
+      const firstname = document.getElementsByName("firstname")[0].value;
+      const lastname = document.getElementsByName("lastname")[0].value;
+      const email = document.getElementsByName("email")[0].value;
+      const password = document.getElementsByName("password")[0].value;
+      const repassword = document.getElementsByName("repassword")[0].value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const age = document.getElementsByName("age")[0].value;
+      const pno = document.getElementsByName("pno")[0].value;
+      const address = document.getElementsByName("address")[0].value;
+      const state = document.getElementsByName("state")[0].value;
+      const country = document.getElementsByName("country")[0].value;
+      const languages = document.querySelectorAll('input[name="languages[]"]:checked');
+      const declaration = document.querySelector('input[type="checkbox"]');
+
+      const errors = [];
+      if (firstname === "") errors.push("First Name is required.");
+      if (lastname === "") errors.push("Last Name is required.");
+      if (email === "") errors.push("Email is required.");
+      if (password === "") errors.push("Password is required.");
+      if (repassword === "") errors.push("Re-Password is required.");
+      if (password !== repassword) errors.push("Passwords do not match.");
+      if (!gender) errors.push("Gender is required.");
+      if (isNaN(age) || age < 0) errors.push("Invalid Age.");
+      if (pno === "") errors.push("Phone number is required.");
+      if (address === "") errors.push("Address is required.");
+      if (state === "") errors.push("State is required.");
+      if (country === "") errors.push("Country is required.");
+      if (languages.length === 0) errors.push("At least one language must be selected.");
+      if (!declaration) errors.push("You must agree to the declaration.");
+
+      // Display validation results in the third column
+      document.getElementById("firstnameValidation").textContent = firstname === "" ? "POOR" : "GOOD";
+      document.getElementById("lastnameValidation").textContent = lastname === "" ? "POOR" : "GOOD";
+      document.getElementById("emailValidation").textContent = email === "" ? "POOR" : "GOOD";
+      document.getElementById("passwordValidation").textContent = password === "" ? "POOR" : "GOOD";
+      document.getElementById("repasswordValidation").textContent = repassword === "" ? "POOR" : "GOOD";
+      document.getElementById("genderValidation").textContent = gender ? "GOOD" : "POOR";
+      document.getElementById("pnoValidation").textContent = pno === "" ? "POOR" : "GOOD";
+      document.getElementById("addressValidation").textContent = address === "" ? "POOR" : "GOOD";
+      document.getElementById("stateValidation").textContent = state === "" ? "POOR" : "GOOD";
+      document.getElementById("countryValidation").textContent = country === "" ? "POOR" : "GOOD";
+      document.getElementById("languagesValidation").textContent = languages.length === 0 ? "POOR" : "GOOD";
+      document.getElementById("declarationValidation").textContent = declaration ? "GOOD" : "POOR";
+
+      // Check overall validation and display in the third column
+      if (errors.length === 0) {
+        document.getElementById("overallValidation").textContent = "GOOD";
+      } else {
+        document.getElementById("overallValidation").textContent = "POOR";
+      }
+    }
+  </script>
+</body>
+
+</html>

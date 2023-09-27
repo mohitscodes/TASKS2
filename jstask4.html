@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date and Time Display</title>
+</head>
+<body>
+    <h1>Date and Time Display</h1>
+    <p>Click the buttons below to select the operation:</p>
+    
+    <button onclick="showDate()">Show Date</button>
+    <button onclick="showTime()">Show Time</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function showDate() {
+            const now = new Date();
+            const date = now.toDateString();
+            document.getElementById("result").innerHTML = `Current Date: ${date}`;
+        }
+
+        function showTime() {
+            const now = new Date();
+            const istTime = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+            document.getElementById("result").innerHTML = `Time: ${istTime}`;
+        }
+    </script>
+</body>
+</html>
